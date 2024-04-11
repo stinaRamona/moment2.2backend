@@ -631,10 +631,23 @@ function printOutData(data) {
     <b>Jobbtitel:</b> ${post.jobtitle}<br>
     <b>Arbetsuppgift:</b> ${post.description}<br>
     <b>Plats/Stad:</b> ${post.location}<br>
-    <br>
     `;
+        let deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Radera";
+        deleteBtn.addEventListener("click", deletePost(post.id));
+        newPost.appendChild(deleteBtn);
         expListEl.appendChild(newPost);
     });
+}
+async function deletePost(id) {
+    let response = await fetch("http://127.0.0.1:3000/api/workexp/" + id, {
+        method: "DELETE",
+        headers: {
+            "content-type": "Application/json"
+        }
+    });
+    let data = await response.json();
+    console.log(data);
 }
 window.onload = printOutData;
 
