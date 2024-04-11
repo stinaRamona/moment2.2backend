@@ -1,26 +1,21 @@
 "use strict"; 
 
-/*
-//hämtar värden från formuläret
-let companyStr = document.getElementById("company").value; 
-let titleStr = document.getElementById("title").value; 
-let descriptionStr = document.getElementById("description").value; 
-let locationStr = document.getElementById("location").value; 
-*/
-
 getExperiece(); 
+let submitBtnEl = document.getElementById("submitBtn"); 
 
-addExperience("test", "test", "test", "test"); 
+//eventlyssnare
+submitBtnEl.addEventListener("click", function(event){
+    event.preventDefault(); //så sidan inte laddar om. 
 
-async function getExperiece(){
-    let response = await fetch("http://127.0.0.1:3000/api/workexp"); 
+    //hämtar värden från formuläret
+    let companyStr = document.getElementById("company").value; 
+    let titleStr = document.getElementById("title").value; 
+    let descriptionStr = document.getElementById("description").value; 
+    let locationStr = document.getElementById("location").value; 
 
-    let data = await response.json(); 
-
-    console.log(data);
-
-    printOutData(data); 
-} 
+    //skickar med värden till funktion
+    addExperience(companyStr, titleStr, descriptionStr, locationStr);
+})  
 
 async function addExperience(company, title, description, location) {
     let experience = {
@@ -41,7 +36,18 @@ async function addExperience(company, title, description, location) {
     let data = await response.json(); 
 
     console.table(data); 
+}
+
+async function getExperiece(){
+    let response = await fetch("http://127.0.0.1:3000/api/workexp"); 
+
+    let data = await response.json(); 
+
+    console.log(data);
+
+    printOutData(data); 
 } 
+ 
 
 //för att skriva ut data till första sidan. 
 function printOutData(data){ 
@@ -63,3 +69,5 @@ function printOutData(data){
             
     });
 }
+
+window.onload = printOutData; 

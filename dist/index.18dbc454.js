@@ -585,20 +585,19 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"1SICI":[function(require,module,exports) {
 "use strict";
-/*
-//hämtar värden från formuläret
-let companyStr = document.getElementById("company").value; 
-let titleStr = document.getElementById("title").value; 
-let descriptionStr = document.getElementById("description").value; 
-let locationStr = document.getElementById("location").value; 
-*/ getExperiece();
-addExperience("test", "test", "test", "test");
-async function getExperiece() {
-    let response = await fetch("http://127.0.0.1:3000/api/workexp");
-    let data = await response.json();
-    console.log(data);
-    printOutData(data);
-}
+getExperiece();
+let submitBtnEl = document.getElementById("submitBtn");
+//eventlyssnare
+submitBtnEl.addEventListener("click", function(event) {
+    event.preventDefault(); //så sidan inte laddar om. 
+    //hämtar värden från formuläret
+    let companyStr = document.getElementById("company").value;
+    let titleStr = document.getElementById("title").value;
+    let descriptionStr = document.getElementById("description").value;
+    let locationStr = document.getElementById("location").value;
+    //skickar med värden till funktion
+    addExperience(companyStr, titleStr, descriptionStr, locationStr);
+});
 async function addExperience(company, title, description, location) {
     let experience = {
         company: company,
@@ -616,6 +615,12 @@ async function addExperience(company, title, description, location) {
     let data = await response.json();
     console.table(data);
 }
+async function getExperiece() {
+    let response = await fetch("http://127.0.0.1:3000/api/workexp");
+    let data = await response.json();
+    console.log(data);
+    printOutData(data);
+}
 //för att skriva ut data till första sidan. 
 function printOutData(data) {
     let expListEl = document.getElementById("expList");
@@ -631,6 +636,7 @@ function printOutData(data) {
         expListEl.appendChild(newPost);
     });
 }
+window.onload = printOutData;
 
 },{}]},["j2YDk","1SICI"], "1SICI", "parcelRequired0f3")
 
