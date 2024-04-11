@@ -634,7 +634,9 @@ function printOutData(data) {
     `;
         let deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Radera";
-        deleteBtn.addEventListener("click", deletePost(post.id));
+        deleteBtn.addEventListener("click", function() {
+            deletePost(post.id);
+        });
         newPost.appendChild(deleteBtn);
         expListEl.appendChild(newPost);
     });

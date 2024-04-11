@@ -45,7 +45,7 @@ async function getExperiece(){
 
     console.log(data);
 
-    printOutData(data); 
+    printOutData(data);  
 } 
  
 
@@ -62,18 +62,20 @@ function printOutData(data){
     <b>Jobbtitel:</b> ${post.jobtitle}<br>
     <b>Arbetsuppgift:</b> ${post.description}<br>
     <b>Plats/Stad:</b> ${post.location}<br>
-    `; 
+    `;  
     
     let deleteBtn = document.createElement("button"); 
-    deleteBtn.textContent = "Radera"
+    deleteBtn.textContent = "Radera" 
 
-    deleteBtn.addEventListener("click", deletePost(post.id)) 
+    deleteBtn.addEventListener('click', function(){
+        deletePost(post.id); 
+    });
 
     newPost.appendChild(deleteBtn); 
     expListEl.appendChild(newPost); 
             
     });
-} 
+}  
 
 async function deletePost(id){
 
@@ -87,6 +89,7 @@ async function deletePost(id){
     let data = await response.json(); 
 
     console.log(data);
+ 
 }
 
 window.onload = printOutData; 
