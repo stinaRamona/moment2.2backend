@@ -88,6 +88,8 @@ async function deletePost(id){
 
     let data = await response.json(); 
 
+    window.location.reload(); 
+    
     console.log(data);
  
 }
