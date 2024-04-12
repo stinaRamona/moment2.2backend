@@ -4,15 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Om lösningen</title>
+    <link rel="stylesheet" href="/index.c92073ef.css">
     <script src="/index.18dbc454.js" defer=""></script>
 </head>
 <body>
     <nav>
-        <ul>
+        <ul id="navList">
             <a href="/index.html"><li>Start</li></a>
             <a href="/add.html"><li>Lägg till erfarenhet</li></a>
             <a href="/about.html"><li>Om Lösningen</li></a>
         </ul>
     </nav>
+
+    <main>
+
+    <h1>Om lösningen</h1>
+    <article>
+        Denna sida är till för att ha sina arbetslivserfarenheter samlade på en plats. Det går att 
+        ta bort värden från listan om den skulle bli för läng och det går att lägga till nya värden. 
+        Nya värden läggs till på sidan <a id="intextLink" href="/add.html">Lägg till</a>. 
+        <br>
+        Värdena häntas från en webbtjänst som hämtar, sparar ner ny och tar bort värden från en databas. 
+        Databasen är en SQLite databas som är intallerad emd ett installationsscript.  
+    </article>
+
+    <article>
+        Detta var ett roligt moment. Det var häftigt att göra ett eget API efter att ha jobbat med API:er 
+        rätt mycket i föregående kurser. Allt som allt har uppgiften gått bra. Jag hade mest problem med att 
+        få till raderingen, då min eventlyssnare inte väntade på klick utan körde funktionen så fort sidan laddades in. 
+        Detta löstes med att kalla på en ny funktion vid klick på radera knappen som i sin tyr kallade på deletePost med ett medskickat 
+        värde. 
+    </article>
+
+    </main>
 </body>
 </html>

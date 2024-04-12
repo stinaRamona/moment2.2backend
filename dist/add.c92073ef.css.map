@@ -1,0 +1,1 @@
+{"mappings":"AAAA","sources":["src/css/style.css"],"sourcesContent":["body{\r\n    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;\r\n    width:800px; \r\n    margin: 0 auto; \r\n}"],"names":[],"version":3,"file":"add.c92073ef.css.map","sourceRoot":"/__parcel_source_root/"}
