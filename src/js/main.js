@@ -17,6 +17,7 @@ submitBtnEl.addEventListener("click", function(event){
     addExperience(companyStr, titleStr, descriptionStr, locationStr);
 })  
 
+//för att lägga till värden(POST)
 async function addExperience(company, title, description, location) {
     let experience = {
         company:company, 
@@ -26,7 +27,7 @@ async function addExperience(company, title, description, location) {
     }
 
     let response = await fetch("http://127.0.0.1:3000/api/workexp", {
-        method: "POST", 
+        method: "POST", //visar att det är ett post-anrop
         headers: {
             "content-type": "Application/json"
         }, 
@@ -38,6 +39,7 @@ async function addExperience(company, title, description, location) {
     console.table(data); 
 }
 
+//hämtar in data från API
 async function getExperiece(){
     let response = await fetch("http://127.0.0.1:3000/api/workexp"); 
 
@@ -77,10 +79,11 @@ function printOutData(data){
     });
 }  
 
+//för att ta bort data
 async function deletePost(id){
 
     let response = await fetch("http://127.0.0.1:3000/api/workexp/" + id, {
-        method: "DELETE", 
+        method: "DELETE", //Visar att det är ett delete anrop
         headers: {
         "content-type": "Application/json"
         }

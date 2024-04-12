@@ -598,6 +598,7 @@ submitBtnEl.addEventListener("click", function(event) {
     //skickar med värden till funktion
     addExperience(companyStr, titleStr, descriptionStr, locationStr);
 });
+//för att lägga till värden(POST)
 async function addExperience(company, title, description, location) {
     let experience = {
         company: company,
@@ -615,6 +616,7 @@ async function addExperience(company, title, description, location) {
     let data = await response.json();
     console.table(data);
 }
+//hämtar in data från API
 async function getExperiece() {
     let response = await fetch("http://127.0.0.1:3000/api/workexp");
     let data = await response.json();
@@ -641,6 +643,7 @@ function printOutData(data) {
         expListEl.appendChild(newPost);
     });
 }
+//för att ta bort data
 async function deletePost(id) {
     let response = await fetch("http://127.0.0.1:3000/api/workexp/" + id, {
         method: "DELETE",
