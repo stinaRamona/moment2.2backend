@@ -95,4 +95,9 @@ input {
     font-size: 1em; 
     font-weight:500; 
     padding:0; 
+} 
+
+#errorDiv{
+    color:red; 
+    font-weight: bold;
 }

@@ -587,8 +587,11 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 "use strict";
 getExperiece();
 let submitBtnEl = document.getElementById("submitBtn");
+let errorDiv = document.getElementById("errorDiv");
 //eventlyssnare
 submitBtnEl.addEventListener("click", function(event) {
+    console.log("submitBtnEl:", submitBtnEl);
+    console.log("errorDiv:", errorDiv);
     event.preventDefault(); //så sidan inte laddar om. 
     //hämtar värden från formuläret
     let companyStr = document.getElementById("company").value;
@@ -606,15 +609,21 @@ async function addExperience(company, title, description, location) {
         description: description,
         location: location
     };
-    let response = await fetch("http://127.0.0.1:3000/api/workexp", {
-        method: "POST",
-        headers: {
-            "content-type": "Application/json"
-        },
-        body: JSON.stringify(experience)
-    });
-    let data = await response.json();
-    console.table(data);
+    try {
+        let response = await fetch("http://127.0.0.1:3000/api/workexp", {
+            method: "POST",
+            headers: {
+                "content-type": "Application/json"
+            },
+            body: JSON.stringify(experience)
+        });
+        //om svaret inte är OK så skrivs felmeddelanden ut: 
+        if (!response.ok) throw new Error("V\xe4nligen fyll i alla v\xe4rden!");
+        let data = await response.json();
+        console.table(data);
+    } catch (error) {
+        errorDiv.innerHTML = error.message;
+    }
 }
 //hämtar in data från API
 async function getExperiece() {

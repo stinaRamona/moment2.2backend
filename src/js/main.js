@@ -3,8 +3,11 @@
 getExperiece(); 
 let submitBtnEl = document.getElementById("submitBtn"); 
 
+let errorDiv = document.getElementById("errorDiv");
 //eventlyssnare
 submitBtnEl.addEventListener("click", function(event){
+    console.log("submitBtnEl:", submitBtnEl);
+    console.log("errorDiv:", errorDiv);
     event.preventDefault(); //så sidan inte laddar om. 
 
     //hämtar värden från formuläret
@@ -24,8 +27,9 @@ async function addExperience(company, title, description, location) {
         title: title, 
         description: description, 
         location: location
-    }
+    } 
 
+    try {
     let response = await fetch("http://127.0.0.1:3000/api/workexp", {
         method: "POST", //visar att det är ett post-anrop
         headers: {
@@ -34,9 +38,17 @@ async function addExperience(company, title, description, location) {
         body: JSON.stringify(experience)
     }); 
 
+    //om svaret inte är OK så skrivs felmeddelanden ut: 
+    if (!response.ok) {
+        throw new Error("Vänligen fyll i alla värden!");
+    } 
+
     let data = await response.json(); 
 
     console.table(data); 
+    } catch (error){
+        errorDiv.innerHTML = error.message
+    }
 }
 
 //hämtar in data från API

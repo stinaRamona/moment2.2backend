@@ -90,4 +90,9 @@ input {
   font-weight: 500;
   text-decoration: underline;
 }
+
+#errorDiv {
+  color: red;
+  font-weight: bold;
+}
 /*# sourceMappingURL=index.c92073ef.css.map */
