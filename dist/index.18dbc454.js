@@ -598,7 +598,9 @@ submitBtnEl.addEventListener("click", function(event) {
     let titleStr = document.getElementById("title").value;
     let descriptionStr = document.getElementById("description").value;
     let locationStr = document.getElementById("location").value;
-    //skickar med värden till funktion
+    //validerar så inga tomma strängar skickas
+    if (companyStr == "" || titleStr == "" || descriptionStr == "" || locationStr == "") errorDiv.innerHTML = "Du m\xe5ste fylla i samtliga v\xe4rden!";
+    else //skickar med värden till funktion
     addExperience(companyStr, titleStr, descriptionStr, locationStr);
 });
 //för att lägga till värden(POST)
@@ -618,7 +620,7 @@ async function addExperience(company, title, description, location) {
             body: JSON.stringify(experience)
         });
         //om svaret inte är OK så skrivs felmeddelanden ut: 
-        if (!response.ok) throw new Error("V\xe4nligen fyll i alla v\xe4rden!");
+        if (!response.ok) throw new Error("N\xe5got gick fel!");
         let data = await response.json();
         console.table(data);
     } catch (error) {
